@@ -1,4 +1,4 @@
-# from django.contrib import admin
+from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -12,6 +12,8 @@ urlpatterns = [
     path('auth/', include('authapp.urls', namespace='auth')),
     path('auth/', include('social_django.urls', namespace='social')),
     path('admin/', include('adminapp.urls', namespace='admin')),
+    path('basket/', include('basketapp.urls', namespace='basket')),
+    path('order/', include('ordersapp.urls', namespace='order')),
 ]
 
 if settings.DEBUG:

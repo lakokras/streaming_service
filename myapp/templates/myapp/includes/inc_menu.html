@@ -22,12 +22,20 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'auth:edit' %}">профиль</a>
+                        <a class="dropdown-item"
+                           href="{% url 'auth:edit' %}">профиль</a>
+                        <a class="dropdown-item"
+                           href="{% url 'basket:view' %}">корзина</a>
+                        <a class="dropdown-item"
+                           href="{% url 'order:orders_list' %}">заказы</a>
 
 
                         {% if user.is_superuser %}
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'admin:users' %}">админка</a>
+                            <a class="dropdown-item"
+                               href="{% url 'admin:users' %}">
+                                админка
+                            </a>
                         {% endif %}
                     </div>
 
