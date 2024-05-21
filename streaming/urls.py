@@ -7,13 +7,34 @@ import myapp.views as myapp
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('', myapp.main, name='main'),
-    path('list_of_accommodations/', include('myapp.urls', namespace='acc')),
-    path('auth/', include('authapp.urls', namespace='auth')),
-    path('auth/', include('social_django.urls', namespace='social')),
-    path('admin/', include('adminapp.urls', namespace='admin')),
-    path('basket/', include('basketapp.urls', namespace='basket')),
-    path('order/', include('ordersapp.urls', namespace='order')),
+    path(
+        '',
+        myapp.main,
+        name='main'),
+    path(
+        'list_of_accommodations/',
+        include('myapp.urls',
+                namespace='acc')),
+    path(
+        'auth/',
+        include('authapp.urls',
+                namespace='auth')),
+    path(
+        'auth/',
+        include('social_django.urls',
+                namespace='social')),
+    path(
+        'admin/',
+        include('adminapp.urls',
+                namespace='admin')),
+    path(
+        'basket/',
+        include('basketapp.urls',
+                namespace='basket')),
+    path(
+        'order/',
+        include('ordersapp.urls',
+                namespace='order')),
 ]
 
 if settings.DEBUG:

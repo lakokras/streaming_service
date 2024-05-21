@@ -1,14 +1,18 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import HttpResponseRedirect
+
 from django.urls import reverse
 from django.urls import reverse_lazy
+
 from django.db import transaction
 from django.forms import inlineformset_factory
+
 from django.views.generic import ListView
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic.detail import DetailView
+
 from basketapp.models import Basket
 from ordersapp.models import Order
 from ordersapp.models import OrderItem
@@ -45,9 +49,12 @@ class OrderItemsCreate(CreateView):
                                                      fields='__all__')
                 formset = OrderFormSet()
                 for num, form in enumerate(formset.forms):
-                    form.initial['accommodation'] = basket_items[num].accommodation
-                    form.initial['nights'] = basket_items[num].nights
-                    form.initial['price'] = basket_items[num].accommodation.price
+                    form.initial['accommodation'] =\
+                        basket_items[num].accommodation
+                    form.initial['nights'] =\
+                        basket_items[num].nights
+                    form.initial['price'] =\
+                        basket_items[num].accommodation.price
                 basket_items.delete()
 
             else:
@@ -85,7 +92,8 @@ class OrderItemsUpdate(UpdateView):
                                              form=OrderItemForm,
                                              extra=1, fields='__all__')
         if self.request.POST:
-            data['orderitems'] = OrderFormSet(self.request.POST, instance=self.object)
+            data['orderitems'] =\
+                OrderFormSet(self.request.POST, instance=self.object)
         else:
             # data['orderitems'] = OrderFormSet(instance=self.object)
             formset = OrderFormSet(instance=self.object)

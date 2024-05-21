@@ -22,11 +22,14 @@ class Order(models.Model):
         (CANCEL, 'отменён'),
     )
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-    created = models.DateTimeField(verbose_name='создан', auto_now_add=True)
+    created = models.DateTimeField(
+        verbose_name='создан', auto_now_add=True)
 
-    updated = models.DateTimeField(verbose_name='обновлён', auto_now=True)
+    updated = models.DateTimeField(
+        verbose_name='обновлён', auto_now=True)
 
     status = models.CharField(
         verbose_name='статус',
@@ -34,7 +37,8 @@ class Order(models.Model):
         choices=ORDER_STATUS_CHOICES,
         default=FORMING)
 
-    is_active = models.BooleanField(verbose_name='активен', default=True)
+    is_active = models.BooleanField(
+        verbose_name='активен', default=True)
     class Meta:
         ordering = ('-created',)
         verbose_name = 'заказ'

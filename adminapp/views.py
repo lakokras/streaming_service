@@ -1,18 +1,24 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import HttpResponseRedirect
+
+from django.contrib.auth.decorators import user_passes_test
+
 from django.urls import reverse
 from django.urls import reverse_lazy
+
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.detail import DetailView
+
 from django.utils.decorators import method_decorator
+
 from myapp.models import Accommodation
 from myapp.models import ListOfCountries
 from authapp.models import StreamUser
+
 from authapp.forms import StreamUserRegisterForm
 from adminapp.forms import StreamUserAdminEditForm
 from adminapp.forms import AccommodationEditForm
@@ -34,7 +40,8 @@ def user_create(request):
     title = 'пользователи/создание'
 
     if request.method == 'POST':
-        user_form = StreamUserRegisterForm(request.POST, request.FILES)
+        user_form = StreamUserRegisterForm(
+            request.POST, request.FILES)
         if user_form.is_valid():
             user_form.save()
             return HttpResponseRedirect(reverse('admin:users'))
@@ -57,12 +64,12 @@ def user_update(request, pk):
     edit_user = get_object_or_404(StreamUser, pk=pk)
 
     if request.method == 'POST':
-        edit_form = StreamUserAdminEditForm(request.POST,
-                                            request.FILES, instance=edit_user)
+        edit_form = StreamUserAdminEditForm(
+            request.POST, request.FILES, instance=edit_user)
         if edit_form.is_valid():
             edit_form.save()
-            return HttpResponseRedirect(reverse('admin:user_update',
-                                                    args=[edit_user.pk]))
+            return HttpResponseRedirect(reverse(
+                'admin:user_update', args=[edit_user.pk]))
     else:
         edit_form = StreamUserAdminEditForm(instance=edit_user)
 
@@ -174,8 +181,8 @@ def accommodation_create(request, pk):
         accommodation_form = AccommodationEditForm(request.POST, request.FILES)
         if accommodation_form.is_valid():
             accommodation_form.save()
-            return HttpResponseRedirect(reverse('admin:accommodations',
-                                                args=[pk]))
+            return HttpResponseRedirect(reverse(
+                'admin:accommodations', args=[pk]))
 
     else:
 
@@ -229,8 +236,8 @@ def accommodation_delete(request, pk):
     if request.method == 'POST':
         accommodation.is_active = False
         accommodation.save()
-        return HttpResponseRedirect(reverse('admin:accommodations',
-                                            args=[accommodation.country.pk]))
+        return HttpResponseRedirect(reverse(
+            'admin:accommodations', args=[accommodation.country.pk]))
     content = {
         'title': title,
         'accommodation_to_delete': accommodation,

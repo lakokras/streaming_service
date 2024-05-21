@@ -13,7 +13,8 @@ def register(request):
     title = 'регистрация'
 
     if request.method == 'POST':
-        register_form = StreamUserRegisterForm(request.POST, request.FILES)
+        register_form = StreamUserRegisterForm(
+            request.POST, request.FILES)
 
         if register_form.is_valid():
             register_form.save()

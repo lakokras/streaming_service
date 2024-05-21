@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.template.loader import render_to_string
 from django.http import JsonResponse
+
 from basketapp.models import Basket
 from myapp.models import Accommodation
 
@@ -30,7 +32,8 @@ def basket(request):
 def basket_add(request, pk):
 
     if 'login' in request.META.get('HTTP_REFERER'):
-        return HttpResponseRedirect(reverse('acc:accommodations', args=[pk]))
+        return HttpResponseRedirect(reverse(
+            'acc:accommodations', args=[pk]))
 
     accommodation = get_object_or_404(Accommodation, pk=pk)
     basket = Basket.objects.filter(user=request.user,

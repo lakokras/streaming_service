@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser
 from django.dispatch import receiver
 
 
-
 class StreamUser(AbstractUser):
     avatar = models.ImageField(upload_to='users_avatars', blank=True)
     age = models.PositiveIntegerField(verbose_name='возраст', default=18)
