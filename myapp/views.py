@@ -32,9 +32,3 @@ def accommodation(request, pk):
     }
 
     return render(request, 'myapp/accommodation_details.html', content)
-
-
-urlpatterns = [
-    # path('admin/', admin.site.urls),
-]
-
